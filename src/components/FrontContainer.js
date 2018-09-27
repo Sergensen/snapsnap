@@ -52,7 +52,7 @@ export default class FrontContainer extends Component {
           {children}
         </View>
         {front && !hide && <TouchableOpacity style={button} onPress={this.remove}>
-          <Icon size={25} color="white" name="remove" />
+          <Icon size={20} color="white" name="remove" />
         </TouchableOpacity>}
       </Animated.View>
     );
@@ -69,7 +69,6 @@ export default class FrontContainer extends Component {
         styles.frontContainer,
         {
           opacity: back?1:(front?0.5:1),
-          display: back?"flex":(front?"flex":"none"),
           transform: [
               { scale }
           ]
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
     width: "25%",
     alignItems: "center",
-    top: "-15%",
+    top: "-20%",
     left: "75%",
   },
 });

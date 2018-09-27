@@ -35,7 +35,9 @@ export default class ButtonBar extends Component {
   }
 
   fireSnap() {
-    this.props.actions.fireSnap();
+    const { fireSnap, disableSaveButton } = this.props.actions;
+    disableSaveButton();
+    fireSnap();
   }
 
   toggleHide() {
@@ -52,12 +54,12 @@ export default class ButtonBar extends Component {
 
   render() {
     const { remove, save, share, button, flashlight, ratio, buttonBarContainer, change } = styles;
-    const { front, back, flash, square, direction } = this.props.picture;
+    const { front, back, flash, square, direction, disabled } = this.props.picture;
 
     return (
         <View style={buttonBarContainer}>
           {back && <TouchableOpacity style={[button, remove]} onPress={this.remove}>
-            <Icon size={36} color="white" name="remove" />
+            <Icon size={30} color="white" name="remove" />
           </TouchableOpacity>}
           {!back && <TouchableOpacity style={[button, remove]} onPress={this.change}>
             <Icon size={25} color="white" name="refresh" />
@@ -66,13 +68,13 @@ export default class ButtonBar extends Component {
             <Square size={35} color="white" name={square?"crop-portrait":"crop-square"} />
           </TouchableOpacity>}
           {front && back && <TouchableOpacity style={[button, flashlight]} onPress={this.share}>
-            <Icon size={35} color="white" name="share-alt" />
+            <Icon size={25} color="white" name="share-alt" />
           </TouchableOpacity>}
           {(!front || !back) && <TouchableOpacity style={[button, flashlight]} onPress={this.toggleFlash}>
-            <Square size={35} color="white" name={flash?"flash-on":"flash-off"} />
+            <Square size={30} color="white" name={flash?"flash-on":"flash-off"} />
           </TouchableOpacity>}
-          <TouchableOpacity style={[button, save]} onPress={front&&back?this.save:this.fireSnap}>
-            <Square size={50} color="white" name={back&&front?"file-download":"photo-camera"} />
+          <TouchableOpacity style={[button, save]} disabled={disabled} onPress={front&&back?this.save:this.fireSnap}>
+            <Square size={50} color="white" style={{ opacity: disabled?0.5:1 }} name={back&&front?"file-download":"photo-camera"} />
           </TouchableOpacity>
         </View>
     );
@@ -93,6 +95,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 0,
     borderColor: "white",
+    zIndex: 500000,
     opacity: 1,
     position: "absolute",
     padding: 12.5,

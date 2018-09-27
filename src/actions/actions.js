@@ -7,6 +7,12 @@ export function takePicture(uri) {
   };
 }
 
+export function disableSaveButton() {
+  return {
+    type: types.DISABLE_SAVE,
+  };
+}
+
 export function fireSnap(camera) {
   return {
     type: types.FIRE_SNAP,

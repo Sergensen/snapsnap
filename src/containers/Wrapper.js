@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
@@ -12,6 +12,7 @@ import Camera from '../components/Camera';
 
 const Wrapper = ({actions, picture}) => {
   const { front, back, flash, square, direction, snapFired, hide } = picture;
+
   return (
     <MainContainer picture={picture} actions={actions}>
       <BackContainer square={square}>
@@ -20,12 +21,14 @@ const Wrapper = ({actions, picture}) => {
           <Camera direction={direction.back} flash={flash} snapFired={snapFired.back} actions={actions} type="back" />
         }
       </BackContainer>
-      <FrontContainer hide={hide} front={front} back={back} actions={actions}>
+      {(back||front) &&
+        <FrontContainer hide={hide} front={front} back={back} actions={actions}>
         {front?
-          <ImageView uri={front}  scale={direction.front} />:
+          <ImageView uri={front} scale={direction.front} />:
           <Camera direction={direction.front} flash={flash} snapFired={snapFired.front} actions={actions} type="front" />
         }
-      </FrontContainer>
+        </FrontContainer>
+      }
       {!hide&&<ButtonBar actions={actions} picture={picture} />}
     </MainContainer>
   );

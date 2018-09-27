@@ -7,17 +7,19 @@ export function saveUrisInState(state, uri) {
     case !state.back || state.front || (!state.front && !state.back):
       return {
         ...state,
-        back: uri
+        back: uri,
+        disabled: false
       };
       break;
     case state.back!==null:
       return {
         ...state,
-        front: uri
+        front: uri,
+        disabled: false
       };
       break;
     default:
-      return {...state};
+      return {...state, disabled: false};
   }
 }
 

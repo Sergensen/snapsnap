@@ -15,7 +15,8 @@ const initialState = {
     front: true,
     back: false
   },
-  share: false
+  share: false,
+  disabled: false
 }
 
 export default function picture (state = initialState, action) {
@@ -36,6 +37,8 @@ export default function picture (state = initialState, action) {
       return remove(state, action.front);
     case types.FIRE_SNAP:
       return fireSnap(state, action.camera);
+    case types.DISABLE_SAVE:
+      return { ...state, disabled: true}
     case types.CHANGE:
       return {
         ...state,
