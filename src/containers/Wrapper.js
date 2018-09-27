@@ -16,13 +16,13 @@ const Wrapper = ({actions, picture}) => {
     <MainContainer picture={picture} actions={actions}>
       <BackContainer square={square}>
         {back?
-          <ImageView uri={back} />:
+          <ImageView uri={back} scale={direction.back} />:
           <Camera direction={direction.back} flash={flash} snapFired={snapFired.back} actions={actions} type="back" />
         }
       </BackContainer>
       <FrontContainer hide={hide} front={front} back={back} actions={actions}>
         {front?
-          <ImageView uri={front} scale={true} />:
+          <ImageView uri={front}  scale={direction.front} />:
           <Camera direction={direction.front} flash={flash} snapFired={snapFired.front} actions={actions} type="front" />
         }
       </FrontContainer>

@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
     width: "100%",
     height: Dimensions.get('window').width,
     top: "15%",
-    backgroundColor: "red"
+    backgroundColor: "black"
   },
   portrait: {
     width: "100%",
     height: "100%",
-    backgroundColor: "red"
+    backgroundColor: "black"
   }
 });

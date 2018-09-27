@@ -8,8 +8,8 @@ export default class MainContainer extends Component<Props> {
   }
 
   componentDidUpdate() {
-    const { back, front, hide } = this.props.picture;
-    if(!back&!front&hide) this.props.actions.toggleHide();
+    const { picture, actions } = this.props;
+    if(picture.hide) actions.save(picture.share);
   }
 
   render() {

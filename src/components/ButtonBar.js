@@ -28,11 +28,10 @@ export default class ButtonBar extends Component {
 
   save() {
     this.props.actions.toggleHide();
-    this.props.actions.save();
   }
 
   share() {
-    this.props.actions.save(true);
+    this.props.actions.toggleHide(true);
   }
 
   fireSnap() {
@@ -58,22 +57,22 @@ export default class ButtonBar extends Component {
     return (
         <View style={buttonBarContainer}>
           {back && <TouchableOpacity style={[button, remove]} onPress={this.remove}>
-            <Icon size={20} name="remove" />
+            <Icon size={36} color="white" name="remove" />
           </TouchableOpacity>}
           {!back && <TouchableOpacity style={[button, remove]} onPress={this.change}>
-            <Icon size={20} name="refresh" />
+            <Icon size={25} color="white" name="refresh" />
           </TouchableOpacity>}
           {!back && <TouchableOpacity style={[button, ratio]} onPress={this.toggleRatio}>
-            <Square size={20} name={square?"crop-square":"crop-portrait"} />
+            <Square size={35} color="white" name={square?"crop-portrait":"crop-square"} />
           </TouchableOpacity>}
           {front && back && <TouchableOpacity style={[button, flashlight]} onPress={this.share}>
-            <Icon size={20} name="share-alt" />
+            <Icon size={35} color="white" name="share-alt" />
           </TouchableOpacity>}
-          {(!front || !back) && <TouchableOpacity style={[button, flashlight, {backgroundColor: flash?"yellow":"lightgrey"}]} onPress={this.toggleFlash}>
-            <Icon size={20} name="flash" />
+          {(!front || !back) && <TouchableOpacity style={[button, flashlight]} onPress={this.toggleFlash}>
+            <Square size={35} color="white" name={flash?"flash-on":"flash-off"} />
           </TouchableOpacity>}
           <TouchableOpacity style={[button, save]} onPress={front&&back?this.save:this.fireSnap}>
-            <Icon size={15} name={back&&front?"download":"circle"} />
+            <Square size={50} color="white" name={back&&front?"file-download":"photo-camera"} />
           </TouchableOpacity>
         </View>
     );
@@ -90,11 +89,11 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   button: {
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'transparent',
     borderRadius: 50,
-    borderWidth: 3,
-    borderColor: "grey",
-    opacity: 0.5,
+    borderWidth: 0,
+    borderColor: "white",
+    opacity: 1,
     position: "absolute",
     padding: 12.5,
     alignItems: "center"
@@ -102,21 +101,21 @@ const styles = StyleSheet.create({
   remove: {
     bottom: "5%",
     width: "17.5%",
-    right: "5%"
+    right: "2.5%"
   },
   save: {
     borderRadius: 50,
     padding: 30,
-    bottom: "1%"
+    bottom: 0
   },
   ratio: {
     width: "17.5%",
     bottom: "15%",
-    right: "5%"
+    right: "2.5%"
   },
   flashlight: {
     top: "5%",
-    right: "5%",
+    right: "2.5%",
     width: "17.5%",
   }
 });

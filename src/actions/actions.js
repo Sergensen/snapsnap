@@ -47,8 +47,9 @@ export function toggleRatio() {
   };
 }
 
-export function toggleHide() {
+export function toggleHide(share=false) {
   return {
-    type: types.TOGGLE_HIDE
+    type: types.TOGGLE_HIDE,
+    share
   };
 }

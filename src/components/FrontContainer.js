@@ -11,7 +11,6 @@ export default class FrontContainer extends Component {
     }
 
     this.remove = this.remove.bind(this);
-    this.change = this.change.bind(this);
 
     this.xOffset = this.state.pan.x._value;
     this.yOffset = this.state.pan.y._value;
@@ -24,10 +23,6 @@ export default class FrontContainer extends Component {
 
   remove() {
     this.props.actions.remove(true);
-  }
-
-  change() {
-    this.props.actions.change("front");
   }
 
   createPanResponder() {
@@ -56,11 +51,8 @@ export default class FrontContainer extends Component {
         <View style={main}>
           {children}
         </View>
-        {!front && !hide && <TouchableOpacity style={button} onPress={this.change}>
-          <Icon size={15} name="refresh" />
-        </TouchableOpacity>}
         {front && !hide && <TouchableOpacity style={button} onPress={this.remove}>
-          <Icon size={15} name="remove" />
+          <Icon size={25} color="white" name="remove" />
         </TouchableOpacity>}
       </Animated.View>
     );
@@ -92,7 +84,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width/2,
     borderRadius: 100,
     zIndex: 100,
-    backgroundColor: "green",
+    backgroundColor: "black",
     position: "absolute"
   },
   main: {
@@ -102,11 +94,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   button: {
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'transparent',
     borderRadius: 30,
-    borderWidth: 3,
-    borderColor: "grey",
-    opacity: 0.5,
+    borderWidth: 0,
+    borderColor: "white",
+    opacity: 1,
     padding: 10,
     zIndex: 100,
     width: "25%",

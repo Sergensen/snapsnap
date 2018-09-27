@@ -14,7 +14,8 @@ const initialState = {
   direction: {
     front: true,
     back: false
-  }
+  },
+  share: false
 }
 
 export default function picture (state = initialState, action) {
@@ -25,12 +26,12 @@ export default function picture (state = initialState, action) {
     case types.TOGGLE_FLASH:
       return { ...state, flash:!flash}
     case types.TOGGLE_HIDE:
-      return { ...state, hide:!hide}
+      return { ...state, hide:!hide, share: action.share}
     case types.TOGGLE_RATIO:
       return { ...state, square:!square}
     case types.SAVE:
       save(state, action);
-      return { ...state, front: false, back: false }
+      return { ...state, front: false, back: false, hide: false, share: false }
     case types.REMOVE:
       return remove(state, action.front);
     case types.FIRE_SNAP:
